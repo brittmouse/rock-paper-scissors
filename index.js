@@ -20,7 +20,26 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-let playerSelection = prompt("Enter rock, paper, or scissors:").toLowerCase();
-let computerSelection = getComputerChoice();
-
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+  for (let i = 1; i <= 5; i++) {
+    let playerSelection = prompt("Enter rock, paper, or scissors:").toLowerCase();
+    let computerSelection = getComputerChoice();
+    // TO-DO: Input validation
+    while (
+      (playerSelection !== "rock") &&
+      (playerSelection !== "paper") &&
+      (playerSelection !== "scissors")
+    ) {
+      console.log("Invalid input.");
+      playerSelection = prompt("Enter rock, paper, or scissors:").toLowerCase();
+      if (
+        (playerSelection === "rock") ||
+        (playerSelection === "paper") ||
+        (playerSelection === "scissors")
+      ) {
+        break;
+      }
+    }
+    console.log(playRound(playerSelection, computerSelection));
+  }
+}
