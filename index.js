@@ -6,7 +6,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return "It's a tie!";
+    return `It's a tie! You both played ${playerSelection}`;
   } else {
     if (
       (playerSelection === 'rock' && computerSelection === 'scissors') ||
