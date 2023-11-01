@@ -1,4 +1,5 @@
 let win = 0;
+let tie = 0;
 let lose = 0;
 
 function getComputerChoice() {
@@ -12,6 +13,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
+    tie++;
     return `It's a tie! You both played ${playerSelection}`;
   } else {
     if (
@@ -28,35 +30,18 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+const isGameOver = () => (win === 5 || loss === 5);
+
 const rockBtn = document.getElementById("rock");
 const paperBtn = document.getElementById("paper");
 const scissorsBtn = document.getElementById("scissors");
 
-rockBtn.addEventListener("click");
-paperBtn.addEventListener("click");
-scissorsBtn.addEventListener("click");
+rockBtn.addEventListener("click", () => handleClick("rock"));
+paperBtn.addEventListener("click", () => handleClick("paper"));
+scissorsBtn.addEventListener("click", () => handleClick("scissors"));
 
-function game() {
-  // for (let i = 1; i <= 5; i++) {
-  let playerSelection = prompt("Enter rock, paper, or scissors:").toLowerCase();
-  let computerSelection = getComputerChoice();
-  while (
-    (playerSelection !== "rock") &&
-    (playerSelection !== "paper") &&
-    (playerSelection !== "scissors")
-  ) {
-    console.log("Invalid input.");
-    playerSelection = prompt("Enter rock, paper, or scissors:").toLowerCase();
-    if (
-      (playerSelection === "rock") ||
-      (playerSelection === "paper") ||
-      (playerSelection === "scissors")
-    ) {
-      break;
-    }
-  }
+function handleClick(playerSelection) {
+  const computerSelection = getComputerChoice();
   console.log(playRound(playerSelection, computerSelection));
-  // }
+  // playRound(playerSelection, computerSelection) // <= UNCOMMENT WHEN DONE TESTING
 }
-
-// game();
