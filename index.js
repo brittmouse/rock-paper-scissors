@@ -1,3 +1,6 @@
+let win = 0;
+let lose = 0;
+
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3);
   switch (randomNumber) {
@@ -6,22 +9,6 @@ function getComputerChoice() {
     case 2: return "scissors";
   }
 }
-
-const buttons = document.getElementById("buttons");
-buttons.addEventListener('click', (event) => {
-  const target = event.target;
-  switch (target.id) {
-    case "rock":
-      console.log("Rock was selected");
-      break;
-    case "paper":
-      console.log("Paper was selected");
-      break;
-    case "scissors":
-      console.log("Scissors was selected");
-      break;
-  }
-});
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
@@ -32,12 +19,22 @@ function playRound(playerSelection, computerSelection) {
       (playerSelection === 'scissors' && computerSelection === 'paper') ||
       (playerSelection === 'paper' && computerSelection === 'rock')
     ) {
+      win++;
       return `You win! ${playerSelection} beats ${computerSelection}`;
     } else {
+      lose++;
       return `You lose! ${computerSelection} beats ${playerSelection}`;
     }
   }
 }
+
+const rockBtn = document.getElementById("rock");
+const paperBtn = document.getElementById("paper");
+const scissorsBtn = document.getElementById("scissors");
+
+rockBtn.addEventListener("click");
+paperBtn.addEventListener("click");
+scissorsBtn.addEventListener("click");
 
 function game() {
   // for (let i = 1; i <= 5; i++) {
