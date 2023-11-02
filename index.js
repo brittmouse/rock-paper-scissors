@@ -28,10 +28,19 @@ function playRound(playerSelection, computerSelection) {
       result.innerText = `You lose - ${computerSelection} beats ${playerSelection}!`;
     }
   }
-  updateScores();
 }
 
-const isGameOver = () => (win === 5 || loss === 5);
+function updateScores() {
+  winOut.innerText = `Wins: ${win}`;
+  tieOut.innerText = `Ties: ${tie}`;
+  loseOut.innerText = `Losses: ${loss}`;
+}
+
+function setFinalMessage(win, loss) {
+  return win > loss ? (final.innerText = "You win!") : (final.innerText = "You lost.");
+}
+
+const isGameOver = (win, loss) => (win === 5 || loss === 5);
 
 const rockBtn = document.getElementById("rock");
 const paperBtn = document.getElementById("paper");
@@ -42,17 +51,21 @@ const loseOut = document.getElementById("losses");
 const result = document.getElementById("result");
 const final = document.getElementById("final");
 
-rockBtn.addEventListener("click", () => handleClick("rock"));
-paperBtn.addEventListener("click", () => handleClick("paper"));
-scissorsBtn.addEventListener("click", () => handleClick("scissors"));
+rockBtn.addEventListener("click", () => game("rock"));
+paperBtn.addEventListener("click", () => game("paper"));
+scissorsBtn.addEventListener("click", () => game("scissors"));
 
-function handleClick(playerSelection) {
+function game(playerSelection) {
+  if (isGameOver(win, loss)) {
+    setFinalMessage(win, loss);
+    return;
+  }
   const computerSelection = getComputerChoice();
   playRound(playerSelection, computerSelection) // <= UNCOMMENT WHEN DONE TESTING
-}
+  updateScores();
 
-function updateScores() {
-  winOut.innerText = `Wins: ${win}`;
-  tieOut.innerText = `Ties: ${tie}`;
-  loseOut.innerText = `Losses: ${loss}`;
+  if (isGameOver(win, loss)) {
+    setFinalMessage(win, loss);
+    return;
+  }
 }
