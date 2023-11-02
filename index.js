@@ -45,6 +45,7 @@ const isGameOver = (win, loss) => (win === 5 || loss === 5);
 const rockBtn = document.getElementById("rock");
 const paperBtn = document.getElementById("paper");
 const scissorsBtn = document.getElementById("scissors");
+const restartBtn = document.getElementById("restart");
 const winOut = document.getElementById("wins");
 const tieOut = document.getElementById("ties");
 const loseOut = document.getElementById("losses");
@@ -54,6 +55,7 @@ const final = document.getElementById("final");
 rockBtn.addEventListener("click", () => game("rock"));
 paperBtn.addEventListener("click", () => game("paper"));
 scissorsBtn.addEventListener("click", () => game("scissors"));
+restartBtn.addEventListener("click", () => reset());
 
 function game(playerSelection) {
   if (isGameOver(win, loss)) {
@@ -68,4 +70,15 @@ function game(playerSelection) {
     setFinalMessage(win, loss);
     return;
   }
+}
+
+function reset() {
+  win = 0;
+  tie = 0;
+  loss = 0;
+  result.innerText = "";
+  final.innerText = "";
+  winOut.innerText = `Wins: ${win}`;
+  tieOut.innerText = `Ties: ${tie}`;
+  loseOut.innerText = `Losses: ${loss}`;
 }
